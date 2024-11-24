@@ -23,7 +23,7 @@ This project is designed to monitor cryptocurrency data from various sources suc
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/crypto-monitoring.git
+   git clone https://github.com/FreakyLime/crypto-trend-analysis
    ```
 
 2. Navigate to the project directory:
