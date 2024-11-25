@@ -28,7 +28,7 @@ This project is designed to monitor cryptocurrency data from various sources suc
 
 2. Navigate to the project directory:
    ```bash
-   cd crypto-monitoring
+   cd crypto-trend-analysis
    ```
 
 3. Create a virtual environment and activate it:

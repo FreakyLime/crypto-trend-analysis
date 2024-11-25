@@ -1044,3 +1044,1061 @@ Based on the provided data:
 Remember, these are just recommendations based on the provided data. Always consider other market factors and your own risk tolerance when making trading decisions.
 2024-11-24 20:33:58,118 - [92mINFO[0m - Message sent to Telegram successfully.
 2024-11-24 20:33:58,118 - [92mINFO[0m - Crypto monitoring script finished.
+2024-11-25 14:24:24,186 - [92mINFO[0m - Starting crypto monitoring script...
+2024-11-25 14:24:24,186 - [92mINFO[0m - Starting cryptocurrency analysis...
+2024-11-25 14:24:30,538 - [92mINFO[0m - Fear & Greed Index: 82
+2024-11-25 14:24:30,538 - [92mINFO[0m - Bitcoin Dominance: 55.23364503558684%
+2024-11-25 14:24:57,982 - [92mINFO[0m - Data sent to GPT:
+{
+  "fear_greed": 82,
+  "btc_dominance": 55.23364503558684,
+  "bitcoin_sentiment": "Mean: 0.0032, Sum: 0.3331, Count: 105, Date: 2024-11-25",
+  "significant_symbols": [
+    {
+      "symbol": "BTCUSDT",
+      "price": 98249.99,
+      "rsi": 54.373276254572865,
+      "macd": 169.7877667806897,
+      "signal": 167.47190468298393,
+      "bollinger_upper": 98683.82741169556,
+      "bollinger_lower": 97826.34858830448,
+      "volume": 34547.43894,
+      "liquidity": 0.01,
+      "order_book": {
+        "lastUpdateId": 55317958152,
+        "bids": [
+          [
+            "98255.99000000",
+            "2.33124000"
+          ],
+          [
+            "98255.98000000",
+            "0.91231000"
+          ],
+          [
+            "98254.62000000",
+            "0.20345000"
+          ],
+          [
+            "98252.00000000",
+            "0.09690000"
+          ],
+          [
+            "98251.67000000",
+            "0.21276000"
+          ],
+          [
+            "98251.17000000",
+            "0.09668000"
+          ],
+          [
+            "98251.16000000",
+            "0.19010000"
+          ],
+          [
+            "98250.85000000",
+            "0.00021000"
+          ],
+          [
+            "98250.56000000",
+            "0.19010000"
+          ],
+          [
+            "98250.17000000",
+            "0.00010000"
+          ]
+        ],
+        "asks": [
+          [
+            "98256.00000000",
+            "0.61579000"
+          ],
+          [
+            "98256.74000000",
+            "0.00111000"
+          ],
+          [
+            "98258.97000000",
+            "0.00016000"
+          ],
+          [
+            "98258.98000000",
+            "0.01967000"
+          ],
+          [
+            "98258.99000000",
+            "0.00024000"
+          ],
+          [
+            "98259.00000000",
+            "0.04080000"
+          ],
+          [
+            "98259.82000000",
+            "0.00795000"
+          ],
+          [
+            "98259.83000000",
+            "0.00010000"
+          ],
+          [
+            "98259.98000000",
+            "0.00993000"
+          ],
+          [
+            "98259.99000000",
+            "0.16946000"
+          ]
+        ]
+      },
+      "coingecko_price": 98326,
+      "coingecko_market_cap": 1948883692450.2983
+    },
+    {
+      "symbol": "ETHUSDT",
+      "price": 3492.52,
+      "rsi": 83.5377160973861,
+      "macd": 28.848890219941495,
+      "signal": 20.26680880938804,
+      "bollinger_upper": 3489.5723113535123,
+      "bollinger_lower": 3337.624688646488,
+      "volume": 542414.2499,
+      "liquidity": 0.01,
+      "order_book": {
+        "lastUpdateId": 39580513769,
+        "bids": [
+          [
+            "3492.51000000",
+            "31.73860000"
+          ],
+          [
+            "3492.50000000",
+            "0.00300000"
+          ],
+          [
+            "3492.49000000",
+            "0.00300000"
+          ],
+          [
+            "3492.48000000",
+            "0.00300000"
+          ],
+          [
+            "3492.47000000",
+            "0.01560000"
+          ],
+          [
+            "3492.45000000",
+            "1.44430000"
+          ],
+          [
+            "3492.44000000",
+            "3.58960000"
+          ],
+          [
+            "3492.43000000",
+            "8.96370000"
+          ],
+          [
+            "3492.42000000",
+            "0.00150000"
+          ],
+          [
+            "3492.41000000",
+            "3.54150000"
+          ]
+        ],
+        "asks": [
+          [
+            "3492.52000000",
+            "4.82940000"
+          ],
+          [
+            "3492.53000000",
+            "0.00460000"
+          ],
+          [
+            "3492.56000000",
+            "0.00680000"
+          ],
+          [
+            "3492.57000000",
+            "0.00510000"
+          ],
+          [
+            "3492.58000000",
+            "0.00150000"
+          ],
+          [
+            "3492.59000000",
+            "0.02150000"
+          ],
+          [
+            "3492.60000000",
+            "0.11700000"
+          ],
+          [
+            "3492.61000000",
+            "0.00150000"
+          ],
+          [
+            "3492.62000000",
+            "0.16220000"
+          ],
+          [
+            "3492.63000000",
+            "0.00200000"
+          ]
+        ]
+      },
+      "coingecko_price": 3480.88,
+      "coingecko_market_cap": 418601569768.10785
+    },
+    {
+      "symbol": "BNBUSDT",
+      "price": 666.48,
+      "rsi": 67.6261829652997,
+      "macd": 3.032147427237078,
+      "signal": 2.6334953721980057,
+      "bollinger_upper": 675.3042361363604,
+      "bollinger_lower": 652.7587638636395,
+      "volume": 807346.34,
+      "liquidity": 0.01,
+      "order_book": {
+        "lastUpdateId": 11138199589,
+        "bids": [
+          [
+            "666.53000000",
+            "351.68600000"
+          ],
+          [
+            "666.52000000",
+            "1.75700000"
+          ],
+          [
+            "666.51000000",
+            "5.10200000"
+          ],
+          [
+            "666.50000000",
+            "8.09900000"
+          ],
+          [
+            "666.49000000",
+            "2.46000000"
+          ],
+          [
+            "666.48000000",
+            "12.67200000"
+          ],
+          [
+            "666.47000000",
+            "7.45500000"
+          ],
+          [
+            "666.46000000",
+            "1.76900000"
+          ],
+          [
+            "666.45000000",
+            "2.32000000"
+          ],
+          [
+            "666.44000000",
+            "1.82300000"
+          ]
+        ],
+        "asks": [
+          [
+            "666.54000000",
+            "11.82300000"
+          ],
+          [
+            "666.55000000",
+            "0.07700000"
+          ],
+          [
+            "666.56000000",
+            "1.90500000"
+          ],
+          [
+            "666.57000000",
+            "0.22100000"
+          ],
+          [
+            "666.58000000",
+            "1.75700000"
+          ],
+          [
+            "666.60000000",
+            "1.94700000"
+          ],
+          [
+            "666.61000000",
+            "0.73400000"
+          ],
+          [
+            "666.62000000",
+            "0.14500000"
+          ],
+          [
+            "666.65000000",
+            "0.05400000"
+          ],
+          [
+            "666.66000000",
+            "0.28000000"
+          ]
+        ]
+      },
+      "coingecko_price": 667.0,
+      "coingecko_market_cap": 97439479696.18475
+    },
+    {
+      "symbol": "XRPUSDT",
+      "price": 1.4857,
+      "rsi": 58.987670343932564,
+      "macd": 0.017273917709522024,
+      "signal": 0.019226847229060342,
+      "bollinger_upper": 1.5330829001280377,
+      "bollinger_lower": 1.440917099871962,
+      "volume": 1073968729.0,
+      "liquidity": 0.0001,
+      "order_book": {
+        "lastUpdateId": 12905703638,
+        "bids": [
+          [
+            "1.48550000",
+            "3358.00000000"
+          ],
+          [
+            "1.48540000",
+            "3676.00000000"
+          ],
+          [
+            "1.48530000",
+            "10979.00000000"
+          ],
+          [
+            "1.48520000",
+            "18062.00000000"
+          ],
+          [
+            "1.48510000",
+            "11420.00000000"
+          ],
+          [
+            "1.48500000",
+            "23891.00000000"
+          ],
+          [
+            "1.48490000",
+            "43476.00000000"
+          ],
+          [
+            "1.48480000",
+            "13417.00000000"
+          ],
+          [
+            "1.48470000",
+            "10654.00000000"
+          ],
+          [
+            "1.48460000",
+            "13440.00000000"
+          ]
+        ],
+        "asks": [
+          [
+            "1.48560000",
+            "5267.00000000"
+          ],
+          [
+            "1.48570000",
+            "11281.00000000"
+          ],
+          [
+            "1.48580000",
+            "8077.00000000"
+          ],
+          [
+            "1.48590000",
+            "6337.00000000"
+          ],
+          [
+            "1.48600000",
+            "7952.00000000"
+          ],
+          [
+            "1.48610000",
+            "11652.00000000"
+          ],
+          [
+            "1.48620000",
+            "3543.00000000"
+          ],
+          [
+            "1.48630000",
+            "21088.00000000"
+          ],
+          [
+            "1.48640000",
+            "9745.00000000"
+          ],
+          [
+            "1.48650000",
+            "15996.00000000"
+          ]
+        ]
+      },
+      "coingecko_price": 1.49,
+      "coingecko_market_cap": 85065583364.90999
+    },
+    {
+      "symbol": "ADAUSDT",
+      "price": 1.0478,
+      "rsi": 56.94789081885866,
+      "macd": 0.008335850123671218,
+      "signal": 0.009011791191576793,
+      "bollinger_upper": 1.0728697590318026,
+      "bollinger_lower": 1.0266802409681972,
+      "volume": 605618341.6,
+      "liquidity": 0.0001,
+      "order_book": {
+        "lastUpdateId": 9747086363,
+        "bids": [
+          [
+            "1.04680000",
+            "1862.70000000"
+          ],
+          [
+            "1.04670000",
+            "880.00000000"
+          ],
+          [
+            "1.04660000",
+            "739.40000000"
+          ],
+          [
+            "1.04650000",
+            "1890.70000000"
+          ],
+          [
+            "1.04640000",
+            "1547.60000000"
+          ],
+          [
+            "1.04630000",
+            "1338.00000000"
+          ],
+          [
+            "1.04620000",
+            "4823.30000000"
+          ],
+          [
+            "1.04610000",
+            "8216.30000000"
+          ],
+          [
+            "1.04600000",
+            "10796.40000000"
+          ],
+          [
+            "1.04590000",
+            "6793.20000000"
+          ]
+        ],
+        "asks": [
+          [
+            "1.04690000",
+            "2956.60000000"
+          ],
+          [
+            "1.04700000",
+            "2959.90000000"
+          ],
+          [
+            "1.04710000",
+            "3093.10000000"
+          ],
+          [
+            "1.04720000",
+            "7810.00000000"
+          ],
+          [
+            "1.04730000",
+            "7207.90000000"
+          ],
+          [
+            "1.04740000",
+            "6510.40000000"
+          ],
+          [
+            "1.04750000",
+            "3819.30000000"
+          ],
+          [
+            "1.04760000",
+            "5773.20000000"
+          ],
+          [
+            "1.04770000",
+            "7645.60000000"
+          ],
+          [
+            "1.04780000",
+            "9177.30000000"
+          ]
+        ]
+      },
+      "coingecko_price": 1.052,
+      "coingecko_market_cap": 37764233630.10634
+    },
+    {
+      "symbol": "SOLUSDT",
+      "price": 253.43,
+      "rsi": 59.13461538461542,
+      "macd": 0.6484671842781324,
+      "signal": 0.6938060623648579,
+      "bollinger_upper": 255.972053791802,
+      "bollinger_lower": 251.69894620819798,
+      "volume": 3750456.804,
+      "liquidity": 0.01,
+      "order_book": {
+        "lastUpdateId": 15460921282,
+        "bids": [
+          [
+            "253.41000000",
+            "3.58100000"
+          ],
+          [
+            "253.40000000",
+            "0.02100000"
+          ],
+          [
+            "253.39000000",
+            "0.11900000"
+          ],
+          [
+            "253.38000000",
+            "1.60100000"
+          ],
+          [
+            "253.37000000",
+            "5.73100000"
+          ],
+          [
+            "253.36000000",
+            "22.28200000"
+          ],
+          [
+            "253.35000000",
+            "73.47500000"
+          ],
+          [
+            "253.34000000",
+            "124.34000000"
+          ],
+          [
+            "253.33000000",
+            "332.50900000"
+          ],
+          [
+            "253.32000000",
+            "58.55000000"
+          ]
+        ],
+        "asks": [
+          [
+            "253.42000000",
+            "562.17800000"
+          ],
+          [
+            "253.43000000",
+            "6.88900000"
+          ],
+          [
+            "253.44000000",
+            "17.69300000"
+          ],
+          [
+            "253.45000000",
+            "19.85800000"
+          ],
+          [
+            "253.46000000",
+            "37.94200000"
+          ],
+          [
+            "253.47000000",
+            "75.89900000"
+          ],
+          [
+            "253.48000000",
+            "89.90000000"
+          ],
+          [
+            "253.49000000",
+            "29.68000000"
+          ],
+          [
+            "253.50000000",
+            "86.85600000"
+          ],
+          [
+            "253.51000000",
+            "104.24700000"
+          ]
+        ]
+      },
+      "coingecko_price": 254.05,
+      "coingecko_market_cap": 120797594721.1345
+    },
+    {
+      "symbol": "DOTUSDT",
+      "price": 8.996,
+      "rsi": 37.905236907730725,
+      "macd": 0.0471863933980039,
+      "signal": 0.07648052569395465,
+      "bollinger_upper": 9.28380996458131,
+      "bollinger_lower": 8.983790035418687,
+      "volume": 36619064.25,
+      "liquidity": 0.001,
+      "order_book": {
+        "lastUpdateId": 8558745533,
+        "bids": [
+          [
+            "8.99600000",
+            "55.74000000"
+          ],
+          [
+            "8.99400000",
+            "170.75000000"
+          ],
+          [
+            "8.99300000",
+            "244.51000000"
+          ],
+          [
+            "8.99200000",
+            "454.17000000"
+          ],
+          [
+            "8.99100000",
+            "2040.88000000"
+          ],
+          [
+            "8.99000000",
+            "1012.51000000"
+          ],
+          [
+            "8.98900000",
+            "602.73000000"
+          ],
+          [
+            "8.98800000",
+            "1251.08000000"
+          ],
+          [
+            "8.98700000",
+            "1969.44000000"
+          ],
+          [
+            "8.98600000",
+            "2090.59000000"
+          ]
+        ],
+        "asks": [
+          [
+            "8.99700000",
+            "147.79000000"
+          ],
+          [
+            "8.99800000",
+            "232.94000000"
+          ],
+          [
+            "8.99900000",
+            "704.38000000"
+          ],
+          [
+            "9.00000000",
+            "933.28000000"
+          ],
+          [
+            "9.00100000",
+            "1033.11000000"
+          ],
+          [
+            "9.00200000",
+            "270.12000000"
+          ],
+          [
+            "9.00300000",
+            "676.58000000"
+          ],
+          [
+            "9.00400000",
+            "585.48000000"
+          ],
+          [
+            "9.00500000",
+            "1164.35000000"
+          ],
+          [
+            "9.00600000",
+            "2276.34000000"
+          ]
+        ]
+      },
+      "coingecko_price": 9.01,
+      "coingecko_market_cap": 12991041272.715416
+    },
+    {
+      "symbol": "DOGEUSDT",
+      "price": 0.42796,
+      "rsi": 58.68652157311951,
+      "macd": 0.002022540755244051,
+      "signal": 0.002084653976146565,
+      "bollinger_upper": 0.4367138167850446,
+      "bollinger_lower": 0.42088818321495536,
+      "volume": 4484733755.0,
+      "liquidity": 1e-05,
+      "order_book": {
+        "lastUpdateId": 12460224307,
+        "bids": [
+          [
+            "0.42799000",
+            "56192.00000000"
+          ],
+          [
+            "0.42798000",
+            "19752.00000000"
+          ],
+          [
+            "0.42797000",
+            "3855.00000000"
+          ],
+          [
+            "0.42796000",
+            "10495.00000000"
+          ],
+          [
+            "0.42795000",
+            "1172.00000000"
+          ],
+          [
+            "0.42794000",
+            "41115.00000000"
+          ],
+          [
+            "0.42793000",
+            "63838.00000000"
+          ],
+          [
+            "0.42792000",
+            "81643.00000000"
+          ],
+          [
+            "0.42791000",
+            "4105.00000000"
+          ],
+          [
+            "0.42790000",
+            "56888.00000000"
+          ]
+        ],
+        "asks": [
+          [
+            "0.42800000",
+            "209372.00000000"
+          ],
+          [
+            "0.42801000",
+            "7264.00000000"
+          ],
+          [
+            "0.42802000",
+            "6031.00000000"
+          ],
+          [
+            "0.42804000",
+            "19731.00000000"
+          ],
+          [
+            "0.42805000",
+            "936.00000000"
+          ],
+          [
+            "0.42806000",
+            "1660.00000000"
+          ],
+          [
+            "0.42807000",
+            "2990.00000000"
+          ],
+          [
+            "0.42808000",
+            "3150.00000000"
+          ],
+          [
+            "0.42809000",
+            "6840.00000000"
+          ],
+          [
+            "0.42810000",
+            "21513.00000000"
+          ]
+        ]
+      },
+      "coingecko_price": 0.429518,
+      "coingecko_market_cap": 63282041000.273575
+    },
+    {
+      "symbol": "MATICUSDT",
+      "price": 0.3794,
+      "rsi": 26.66666666666667,
+      "macd": -0.0006466375983584238,
+      "signal": -0.00029445497589027244,
+      "bollinger_upper": 0.3847213836713329,
+      "bollinger_lower": 0.3774586163286672,
+      "volume": 0.0,
+      "liquidity": null,
+      "order_book": {
+        "lastUpdateId": 7517749895,
+        "bids": [],
+        "asks": []
+      },
+      "coingecko_price": "N/A",
+      "coingecko_market_cap": "N/A"
+    },
+    {
+      "symbol": "LTCUSDT",
+      "price": 97.38,
+      "rsi": 60.000000000000064,
+      "macd": 0.36042889516187415,
+      "signal": 0.3537677127201018,
+      "bollinger_upper": 98.69606644621109,
+      "bollinger_lower": 96.01793355378891,
+      "volume": 1408201.751,
+      "liquidity": 0.01,
+      "order_book": {
+        "lastUpdateId": 8734557134,
+        "bids": [
+          [
+            "97.36000000",
+            "9.58100000"
+          ],
+          [
+            "97.35000000",
+            "29.24300000"
+          ],
+          [
+            "97.34000000",
+            "27.56300000"
+          ],
+          [
+            "97.33000000",
+            "100.64500000"
+          ],
+          [
+            "97.32000000",
+            "85.18700000"
+          ],
+          [
+            "97.31000000",
+            "175.64500000"
+          ],
+          [
+            "97.30000000",
+            "137.49400000"
+          ],
+          [
+            "97.29000000",
+            "195.32600000"
+          ],
+          [
+            "97.28000000",
+            "26.91800000"
+          ],
+          [
+            "97.27000000",
+            "47.27100000"
+          ]
+        ],
+        "asks": [
+          [
+            "97.37000000",
+            "15.30000000"
+          ],
+          [
+            "97.38000000",
+            "21.95800000"
+          ],
+          [
+            "97.39000000",
+            "32.42400000"
+          ],
+          [
+            "97.40000000",
+            "74.00600000"
+          ],
+          [
+            "97.41000000",
+            "109.95200000"
+          ],
+          [
+            "97.42000000",
+            "115.60400000"
+          ],
+          [
+            "97.43000000",
+            "240.52800000"
+          ],
+          [
+            "97.44000000",
+            "140.62900000"
+          ],
+          [
+            "97.45000000",
+            "167.13400000"
+          ],
+          [
+            "97.46000000",
+            "169.85100000"
+          ]
+        ]
+      },
+      "coingecko_price": 97.5,
+      "coingecko_market_cap": 7347204926.359544
+    },
+    {
+      "symbol": "XLMUSDT",
+      "price": 0.5272,
+      "rsi": 55.142503097893425,
+      "macd": 0.0020937198953512315,
+      "signal": 0.001447418081190645,
+      "bollinger_upper": 0.5498099579585525,
+      "bollinger_lower": 0.5102500420414475,
+      "volume": 2051515190.0,
+      "liquidity": 0.0001,
+      "order_book": {
+        "lastUpdateId": 4000936900,
+        "bids": [
+          [
+            "0.52710000",
+            "40.00000000"
+          ],
+          [
+            "0.52700000",
+            "122.00000000"
+          ],
+          [
+            "0.52690000",
+            "5461.00000000"
+          ],
+          [
+            "0.52680000",
+            "26742.00000000"
+          ],
+          [
+            "0.52670000",
+            "40616.00000000"
+          ],
+          [
+            "0.52660000",
+            "39961.00000000"
+          ],
+          [
+            "0.52650000",
+            "46548.00000000"
+          ],
+          [
+            "0.52640000",
+            "29819.00000000"
+          ],
+          [
+            "0.52630000",
+            "27576.00000000"
+          ],
+          [
+            "0.52620000",
+            "24264.00000000"
+          ]
+        ],
+        "asks": [
+          [
+            "0.52720000",
+            "7233.00000000"
+          ],
+          [
+            "0.52730000",
+            "33465.00000000"
+          ],
+          [
+            "0.52740000",
+            "22676.00000000"
+          ],
+          [
+            "0.52750000",
+            "22802.00000000"
+          ],
+          [
+            "0.52760000",
+            "51341.00000000"
+          ],
+          [
+            "0.52770000",
+            "23903.00000000"
+          ],
+          [
+            "0.52780000",
+            "43209.00000000"
+          ],
+          [
+            "0.52790000",
+            "11785.00000000"
+          ],
+          [
+            "0.52800000",
+            "18812.00000000"
+          ],
+          [
+            "0.52810000",
+            "33906.00000000"
+          ]
+        ]
+      },
+      "coingecko_price": 0.529393,
+      "coingecko_market_cap": 15940647173.712513
+    }
+  ]
+}
+2024-11-25 14:25:35,461 - [92mINFO[0m - OpenAI Analysis:
+Here are my insights based on the data provided:
+
+BTCUSDT: Bitcoin's RSI indicates that it is currently neither overbought nor oversold. The MACD is above the signal line, signaling bullishness. However, the price is near the upper Bollinger Band, which could indicate a potential pullback or consolidation in the short term. Recommendation: HOLD
+
+ETHUSDT: Ethereum's RSI is indicating overbought conditions, suggesting a potential price correction in the near future. The MACD is above the signal line, which is a bullish signal, but the price is above the upper Bollinger Band, suggesting it's potentially overextended. Recommendation: SELL
+
+BNBUSDT: BNB's RSI indicates it's neither overbought nor oversold. The MACD has crossed above the signal line, which is a bullish signal. The price is within the Bollinger Bands, indicating a stable trend. Recommendation: BUY
+
+XRPUSDT: XRP's RSI is moderate, not indicating overbought or oversold conditions. The MACD is slightly below the signal line, signaling bearishness. But the price is within the Bollinger Bands, suggesting a stable trend. Recommendation: HOLD
+
+ADAUSDT: ADA's RSI is moderate, suggesting a balanced market. The MACD is below the signal line, which signals bearishness. The price is within the Bollinger Bands, suggesting stability. Recommendation: HOLD
+
+SOLUSDT: Solana's RSI is moderate, suggesting a balanced market. The MACD is below the signal line, signaling bearishness. The price is within the Bollinger Bands, suggesting stability. Recommendation: HOLD
+
+DOTUSDT: Polkadot's RSI is low, indicating it is oversold and could be due for a price increase. The MACD is below the signal line, signaling bearishness. The price is just within the lower Bollinger Band, which could suggest the start of an upward trend. Recommendation: BUY
+
+DOGEUSDT: Dogecoin's RSI is moderate, suggesting a balanced market. The MACD is below the signal line, suggesting bearishness. But the price is within the Bollinger Bands, indicating stability. Recommendation: HOLD
+
+MATICUSDT: MATIC's RSI is very low, indicating that it's oversold and could be due for a price increase. The MACD is below the signal line, suggesting bearishness. However, with no volume data, it's hard to evaluate liquidity and trading interest. Recommendation: BUY, but with caution due to no volume data.
+
+LTCUSDT: Litecoin's RSI is moderate, suggesting a balanced market. The MACD is above the signal line, suggesting bullishness. The price is within the Bollinger Bands, suggesting stability. Recommendation: BUY
+
+XLMUSDT: Stellar's RSI is moderate, suggesting a balanced market. The MACD is above the signal line, suggesting bullishness. The price is within the Bollinger Bands, suggesting stability. Recommendation: BUY
+
+Please note, these are just insights based on the given data. Before making any investment decisions, investors should do their research and consider their risk tolerance and investment goals.
+2024-11-25 14:25:35,972 - [92mINFO[0m - Message sent to Telegram successfully.
+2024-11-25 14:25:35,973 - [92mINFO[0m - Crypto monitoring script finished.
