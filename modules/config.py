@@ -1,73 +1,89 @@
-from dotenv import load_dotenv
-import os
 import logging
 import sys
+import json
+from dotenv import load_dotenv
+import os
 
-# Load environment variables from .env
+# Load environment variables
 load_dotenv()
 
-# Binance API credentials
+# API Credentials
 BINANCE_API_KEY = os.getenv("BINANCE_API_KEY")
 BINANCE_API_SECRET = os.getenv("BINANCE_API_SECRET")
-
-# Configuration for historical data and candlestick intervals
-HISTORICAL_DATA_LIMIT = int(os.getenv("HISTORICAL_DATA_LIMIT", 50))  # Default to 50 if not set
-CANDLESTICK_INTERVAL = os.getenv("CANDLESTICK_INTERVAL", "15m")  # Default to "15m" if not set
-
-# OpenAI API key
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
-
-# Telegram credentials
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-# Symbol mapping
+# Configuration Settings
+HISTORICAL_DATA_LIMIT = int(os.getenv("HISTORICAL_DATA_LIMIT", 50))
+CANDLESTICK_INTERVAL = os.getenv("CANDLESTICK_INTERVAL", "15m")
+SYMBOLS_TO_MONITOR = os.getenv("SYMBOLS_TO_MONITOR", "").split(",")
+
+# Symbol Mapping
 BINANCE_TO_COINGECKO_SYMBOLS = {
-    'BTCUSDT': 'bitcoin', 'ETHUSDT': 'ethereum', 'BNBUSDT': 'binancecoin',
-    'XRPUSDT': 'ripple', 'ADAUSDT': 'cardano', 'SOLUSDT': 'solana',
-    'DOTUSDT': 'polkadot', 'DOGEUSDT': 'dogecoin', 'MATICUSDT': 'polygon',
-    'LTCUSDT': 'litecoin', 'XLMUSDT': 'stellar'
+    "BTCUSDT": "bitcoin", "ETHUSDT": "ethereum", "BNBUSDT": "binancecoin",
+    "XRPUSDT": "ripple", "ADAUSDT": "cardano", "SOLUSDT": "solana",
+    "DOTUSDT": "polkadot", "DOGEUSDT": "dogecoin", "MATICUSDT": "polygon",
+    "LTCUSDT": "litecoin", "XLMUSDT": "stellar"
 }
+class JsonFormatter(logging.Formatter):
+    """Custom JSON formatter for structured logging."""
+    def format(self, record):
+        log_record = {
+            "time": self.formatTime(record, self.datefmt),
+            "level": record.levelname,
+            "message": record.getMessage()
+        }
+        if record.exc_info:
+            log_record["exception"] = self.formatException(record.exc_info)
+        return json.dumps(log_record)
 
-# List of symbols to monitor (parsed from .env)
-SYMBOLS_TO_MONITOR = os.getenv("SYMBOLS_TO_MONITOR", "").split(",")  # Default to empty list if not set
-
-# Logging configuration
-class CustomFormatter(logging.Formatter):
-    """Custom formatter for color-coded logs in the console."""
+class ColorFormatter(logging.Formatter):
+    """Custom colored formatter for console output."""
     COLORS = {
-        "DEBUG": "\033[94m",   # Blue
-        "INFO": "\033[92m",    # Green
-        "WARNING": "\033[93m", # Yellow
-        "ERROR": "\033[91m",   # Red
-        "CRITICAL": "\033[95m" # Magenta
+        "DEBUG": "\033[94m",    # Blue
+        "INFO": "\033[92m",     # Green
+        "WARNING": "\033[93m",  # Yellow
+        "ERROR": "\033[91m",    # Red
+        "CRITICAL": "\033[95m"  # Magenta
     }
-    RESET = "\033[0m"  # Reset color
+    RESET = "\033[0m"
 
     def format(self, record):
-        log_color = self.COLORS.get(record.levelname, self.RESET)
-        record.levelname = f"{log_color}{record.levelname}{self.RESET}"
-        formatted_message = super().format(record)
-        return f"\n{formatted_message}\n"  # Add spacing between logs for readability
+        color = self.COLORS.get(record.levelname, self.RESET)
+        record.levelname = f"{color}{record.levelname}{self.RESET}"
+        return super().format(record)
 
-def setup_logging(log_file='sent_data.log'):
-    """Setup logging with color-coded console logs and file logging."""
+
+def setup_logging(log_file="sent_data.log"):
+    """
+    Set up the main application logger.
+    
+    Args:
+        log_file (str): The name of the log file to store persistent logs.
+
+    Returns:
+        logger (logging.Logger): Configured logger instance.
+    """
     logger = logging.getLogger(__name__)
-    logger.setLevel(logging.DEBUG)  # Log all levels to the file
+    logger.setLevel(logging.DEBUG)
 
-    # Console Handler
+    # Console handler for immediate feedback
     console_handler = logging.StreamHandler(sys.stdout)
-    console_handler.setLevel(logging.INFO)  # Log INFO and above to the console
-    console_formatter = CustomFormatter("%(asctime)s - %(levelname)s - %(message)s")
+    console_handler.setLevel(logging.INFO)
+    console_formatter = ColorFormatter("%(asctime)s - %(levelname)s - %(message)s")
     console_handler.setFormatter(console_formatter)
 
-    # File Handler
-    file_handler = logging.FileHandler(log_file, mode='a')
-    file_handler.setLevel(logging.DEBUG)  # Log all levels to the file
-    file_formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
+    # File handler for persistent logs
+    file_handler = logging.FileHandler(log_file, mode="a")
+    file_handler.setLevel(logging.DEBUG)
+    file_formatter = JsonFormatter()
     file_handler.setFormatter(file_formatter)
 
-    # Add Handlers to Logger
+    # Clear existing handlers to avoid duplicates
+    if logger.hasHandlers():
+        logger.handlers.clear()
+
     logger.addHandler(console_handler)
     logger.addHandler(file_handler)
 

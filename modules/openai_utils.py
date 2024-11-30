@@ -31,13 +31,11 @@ class OpenAIUtils:
 
             # Extract the response content
             analysis = response['choices'][0]['message']['content']
-            logger.info(f"OpenAI response received: {analysis}")
+            logger.info(f"OpenAI response received.")
 
             # Extract actionable suggestions from the analysis
             suggestion = self._extract_suggestion(analysis)
-            reasoning = analysis
-
-            return suggestion, reasoning
+            return suggestion, analysis
 
         except openai.error.OpenAIError as oe:
             logger.error(f"OpenAI API Error: {oe}")

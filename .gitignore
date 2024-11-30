@@ -4,3 +4,5 @@ venv/
 dev-env/
 __pycache__/
 env/
+charts/*
+!charts/.gitignore
