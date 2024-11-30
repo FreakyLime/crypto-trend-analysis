@@ -1,0 +1,32 @@
+{
+    "symbols_to_monitor": [
+        "BTCUSDT",
+        "ETHUSDT",
+        "BNBUSDT",
+        "XRPUSDT",
+        "ADAUSDT",
+        "SOLUSDT",
+        "DOTUSDT",
+        "DOGEUSDT",
+        "MATICUSDT",
+        "LTCUSDT",
+        "XLMUSDT",
+        "AAVEUSDT",
+        "1INCHUSDT"
+    ],
+    "binance_to_coingecko_symbols": {
+        "BTCUSDT": "bitcoin",
+        "ETHUSDT": "ethereum",
+        "BNBUSDT": "binancecoin",
+        "XRPUSDT": "ripple",
+        "ADAUSDT": "cardano",
+        "SOLUSDT": "solana",
+        "DOTUSDT": "polkadot",
+        "DOGEUSDT": "dogecoin",
+        "MATICUSDT": "polygon",
+        "LTCUSDT": "litecoin",
+        "XLMUSDT": "stellar",
+        "AAVEUSDT": "aave",
+        "1INCHUSDT": "1inch"
+    }
+}

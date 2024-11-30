@@ -1,8 +1,9 @@
 .env
-*-env/
-venv/
-dev-env/
 __pycache__/
 env/
 charts/*
 !charts/.gitignore
+venv/
+*-env/
+*-venv/
+/log
