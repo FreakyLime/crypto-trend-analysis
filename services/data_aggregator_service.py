@@ -1,6 +1,6 @@
-from modules.fear_and_greed_utils import fetch_fear_and_greed
-from modules.coingecko_utils import fetch_all_coin_data, fetch_bitcoin_dominance
-from modules.senticrypt_utils import fetch_sentiment_from_senticrypt
+from data_fetching.fear_and_greed_client import fetch_fear_and_greed
+from data_fetching.coingecko_client import fetch_all_coin_data, fetch_bitcoin_dominance
+from data_fetching.senticrypt_client import fetch_sentiment_from_senticrypt
 import logging
 
 logger = logging.getLogger(__name__)
@@ -34,6 +34,9 @@ def fetch_coingecko_data(symbols, mapping):
     """Fetch cryptocurrency data from CoinGecko for the provided symbols."""
     try:
         crypto_ids = [mapping[symbol] for symbol in symbols if symbol in mapping]
+        if not crypto_ids:  # Handle empty list case
+            logger.error("No valid symbols found in mapping.")
+            return None
         data = fetch_all_coin_data(crypto_ids)
         logger.info(f"Successfully fetched CoinGecko data for symbols: {symbols}.")
         return data
@@ -43,3 +46,4 @@ def fetch_coingecko_data(symbols, mapping):
     except Exception as e:
         logger.error(f"Error fetching CoinGecko data: {e}", exc_info=True)
         return None
+

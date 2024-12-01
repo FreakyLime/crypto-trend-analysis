@@ -1,6 +1,6 @@
-from config.config import setup_logging
-from modules.analyze_utils import analyze_symbol
-from modules.openai_utils import OpenAIUtils
+from config.logger import setup_logging
+from services.symbol_analysis_service import analyze_symbol
+from data_fetching.openai_client import OpenAIUtils
 
 logger = setup_logging()
 

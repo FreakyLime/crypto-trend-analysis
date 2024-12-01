@@ -4,7 +4,6 @@ import sys
 from json import dumps
 from dotenv import load_dotenv
 
-# Load environment variables
 load_dotenv()
 
 class JsonFormatter(logging.Formatter):
@@ -49,25 +48,21 @@ def setup_logging():
     log_file_name = os.getenv("LOG_FILE_NAME", "application.log")
     log_file_path = os.path.join(log_dir, log_file_name)
 
-    # Ensure the log directory exists
     os.makedirs(log_dir, exist_ok=True)
 
     logger = logging.getLogger(__name__)
     logger.setLevel(logging.DEBUG)
 
-    # Console handler for immediate feedback
     console_handler = logging.StreamHandler(sys.stdout)
     console_handler.setLevel(logging.INFO)
     console_formatter = ColorFormatter("%(asctime)s - %(levelname)s - %(message)s")
     console_handler.setFormatter(console_formatter)
 
-    # File handler for persistent logs
     file_handler = logging.FileHandler(log_file_path, mode="a")
     file_handler.setLevel(logging.DEBUG)
     file_formatter = JsonFormatter()
     file_handler.setFormatter(file_formatter)
 
-    # Clear existing handlers to avoid duplicates
     if logger.hasHandlers():
         logger.handlers.clear()
 

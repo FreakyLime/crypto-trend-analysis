@@ -1,6 +1,5 @@
-from config.config import BINANCE_TO_COINGECKO_SYMBOLS
-from modules.coingecko_utils import fetch_all_coin_data
-from modules.indicators_utils import (
+from config.settings import BINANCE_TO_COINGECKO_SYMBOLS
+from analysis.technical_indicators import (
     calculate_rsi,
     calculate_macd,
     calculate_bollinger_bands,
@@ -12,7 +11,6 @@ from modules.indicators_utils import (
     calculate_order_book_imbalance,
     calculate_bid_ask_spread
 )
-from modules.binance_utils import BinanceUtils
 
 def analyze_symbol(symbol, binance_utils, coingecko_data):
     try:
