@@ -5,7 +5,7 @@ import matplotlib.dates as mdates
 from mplfinance.original_flavor import candlestick_ohlc
 from datetime import datetime
 from scipy.stats import linregress
-from config.config import setup_logging
+from config.logger import setup_logging
 
 logger = setup_logging()
 

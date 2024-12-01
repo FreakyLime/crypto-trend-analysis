@@ -102,22 +102,6 @@ class BinanceUtils:
         logger.info(f"Fetching order book for {symbol}.")
         return self._fetch_data("/depth", {"symbol": symbol, "limit": 10})
 
-    def fetch_last_15_minute_candles(self, symbol):
-        """
-        Fetch 1-minute candlestick data for the last 15 minutes.
-
-        Args:
-            symbol (str): Trading pair symbol (e.g., "BTCUSDT").
-
-        Returns:
-            pd.DataFrame: 1-minute candlestick data as a pandas DataFrame, or None if the request fails.
-        """
-        logger.info(f"Fetching last 15-minute 1-minute candles for {symbol}.")
-        data = self._fetch_data("/klines", {"symbol": symbol, "interval": "1m", "limit": 15})
-        if data:
-            return self._parse_historical_data(data)
-        return None
-
     def _parse_historical_data(self, data):
         """
         Parse raw candlestick data into a pandas DataFrame.

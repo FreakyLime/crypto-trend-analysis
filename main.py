@@ -4,16 +4,17 @@ import sys
 import json
 import ast
 import re
-from config.config import (
+from config.logger import setup_logging
+from config.settings import (
     BINANCE_API_KEY, BINANCE_API_SECRET, OPENAI_API_KEY, TELEGRAM_BOT_TOKEN,
     TELEGRAM_CHAT_ID, TELEGRAM_MESSAGE_DELAY, SYMBOLS_TO_MONITOR, BINANCE_TO_COINGECKO_SYMBOLS,
-    CANDLESTICK_INTERVAL, setup_logging
+    CANDLESTICK_INTERVAL
 )
-from modules.data_fetchers import fetch_global_metrics, fetch_sentiment, fetch_coingecko_data
-from modules.analysis import analyze_symbols, prepare_gpt_input, analyze_with_openai
-from modules.chart_generator import generate_single_chart
-from modules.notifications import send_analysis_to_telegram_with_image
-from modules.binance_utils import BinanceUtils
+from services.data_aggregator_service import fetch_global_metrics, fetch_sentiment, fetch_coingecko_data
+from services.gpt_analysis_service import analyze_symbols, prepare_gpt_input, analyze_with_openai
+from services.chart_generator_service import generate_single_chart
+from notifications.telegram_notifications import send_analysis_to_telegram_with_image
+from data_fetching.binance_client import BinanceUtils
 
 logger = setup_logging()
 
