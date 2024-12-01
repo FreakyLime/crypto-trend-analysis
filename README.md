@@ -11,6 +11,8 @@ This project is designed to monitor cryptocurrency data from various sources suc
 - Calculate technical indicators for better market insights.
 - Leverage AI-powered analysis using OpenAI API.
 - Send automated reports and alerts to Telegram channels.
+- Check out the Telegram showcase app to see how it works from the user's perspective:
+    [@Alerts_123bot](https://t.me/Alerts_123bot)
 
 ## Project Structure
 
@@ -18,6 +20,18 @@ This project is designed to monitor cryptocurrency data from various sources suc
 - **Technical Analysis**: Computes indicators such as RSI, MACD, and Bollinger Bands.
 - **AI Integration**: Utilizes OpenAI for advanced market sentiment analysis.
 - **Telegram Integration**: Sends updates, alerts, and detailed analysis to a specified Telegram channel.
+
+## Prerequisites
+
+- **Python**: Version 3.8 or higher.
+- **pip**: Python package manager.
+- **Virtual Environment**: Recommended for managing dependencies.
+- **API Keys**: Required for:
+  - Binance API
+  - CoinGecko API
+  - Senticrypt API
+  - OpenAI API
+  - Telegram Bot API
 
 ## Installation
 
