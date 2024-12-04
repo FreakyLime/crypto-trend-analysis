@@ -1,12 +1,12 @@
 import pytest
 import pandas as pd
 from unittest.mock import patch
-from services.chart_generator_service import generate_single_chart  # Corrected import path
+from services.chart_generator_service import ChartGeneratorService
 
-@patch("services.chart_generator_service.plt.savefig")  # Mock plt.savefig
-@patch("services.chart_generator_service.os.makedirs")  # Mock os.makedirs
+@patch("services.chart_generator_service.plt.savefig")
+@patch("services.chart_generator_service.os.makedirs")
 def test_generate_single_chart_success(mock_makedirs, mock_savefig):
-    # Test data
+    
     data = {
         "open_time": [1660000000000, 1660003600000, 1660007200000],
         "open": [100, 102, 105],
@@ -17,16 +17,19 @@ def test_generate_single_chart_success(mock_makedirs, mock_savefig):
     }
     df = pd.DataFrame(data)
 
-    # Test parameters
     symbol = "BTCUSD"
     candlestick_interval = "1h"
     output_dir = "test_charts"
 
-    # Call the function
-    result = generate_single_chart(symbol, df, candlestick_interval, output_dir)
+    chart_generator = ChartGeneratorService(output_dir=output_dir)
+
+    result = chart_generator.generate_single_chart(symbol, df, candlestick_interval)
 
     # Assertions
     mock_makedirs.assert_called_once()
     mock_savefig.assert_called_once()
     assert result is not None
     assert symbol in result
+
+if __name__ == "__main__":
+    pytest.main()

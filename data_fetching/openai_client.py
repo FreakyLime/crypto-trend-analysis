@@ -3,20 +3,14 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class OpenAIUtils:
+class OpenAIClient:
     def __init__(self, api_key, model="gpt-4", max_tokens=1000, temperature=0.7):
-        """
-        Initialize the OpenAI utility class.
-        """
         openai.api_key = api_key
         self.model = model
         self.max_tokens = max_tokens
         self.temperature = temperature
 
     def analyze_data(self, input_text):
-        """
-        Send data to OpenAI for analysis and process the response.
-        """
         try:
             logger.info("Sending data to OpenAI for analysis.")
             response = openai.ChatCompletion.create(
@@ -28,15 +22,10 @@ class OpenAIUtils:
                 max_tokens=self.max_tokens,
                 temperature=self.temperature
             )
-
-            # Extract the response content
             analysis = response['choices'][0]['message']['content']
-            logger.info(f"OpenAI response received.")
-
-            # Extract actionable suggestions from the analysis
+            logger.info("OpenAI response received.")
             suggestion = self._extract_suggestion(analysis)
             return suggestion, analysis
-
         except openai.error.OpenAIError as oe:
             logger.error(f"OpenAI API Error: {oe}")
             return "Error analyzing data.", "No reasoning available."
@@ -45,9 +34,6 @@ class OpenAIUtils:
             return "Error analyzing data.", "No reasoning available."
 
     def _extract_suggestion(self, analysis):
-        """
-        Extract actionable suggestions based on analysis content.
-        """
         analysis_lower = analysis.lower()
         if 'buy' in analysis_lower:
             return 'Buy'
@@ -58,4 +44,4 @@ class OpenAIUtils:
         elif 'short' in analysis_lower:
             return 'Short Position'
         else:
-            return 'Hold'  # Default action if no suggestion is found
+            return 'Hold'

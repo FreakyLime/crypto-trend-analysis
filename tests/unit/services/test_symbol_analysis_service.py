@@ -1,7 +1,9 @@
 import pytest
 import pandas as pd
 from unittest.mock import MagicMock, patch
-from services.symbol_analysis_service import analyze_symbol
+from services.symbol_analysis_service import SymbolAnalysisService
+from data_fetching.binance_client import BinanceClient
+from data_fetching.coingecko_client import CoinGeckoClient
 
 @patch("services.symbol_analysis_service.BINANCE_TO_COINGECKO_SYMBOLS", {"BTCUSDT": "bitcoin"})
 @patch("services.symbol_analysis_service.calculate_rsi")
@@ -26,8 +28,7 @@ def test_analyze_symbol_success(
     mock_macd,
     mock_rsi
 ):
-    # Mock Binance utilities
-    mock_binance_utils = MagicMock()
+    mock_binance_client = MagicMock(spec=BinanceClient)
     historical_data = pd.DataFrame({
         "open": [100, 102],
         "high": [105, 110],
@@ -35,15 +36,13 @@ def test_analyze_symbol_success(
         "close": [103, 106],
         "volume": [1000, 2000]
     })
-    mock_binance_utils.fetch_historical_data.return_value = historical_data
-    mock_binance_utils.fetch_order_book.return_value = {"bids": [[100, 1]], "asks": [[102, 1]]}
-    mock_binance_utils.fetch_volume.return_value = 1000
-    mock_binance_utils.fetch_liquidity.return_value = 500
+    mock_binance_client.fetch_historical_data.return_value = historical_data
+    mock_binance_client.fetch_order_book.return_value = {"bids": [[100, 1]], "asks": [[102, 1]]}
+    mock_binance_client.fetch_volume.return_value = 1000
+    mock_binance_client.fetch_liquidity.return_value = 500
 
-    # Mock Coingecko data
     coingecko_data = {"bitcoin": {"usd": 45000, "usd_market_cap": 800_000_000}}
 
-    # Mock technical indicators
     mock_rsi.return_value = pd.Series([30, 40])
     mock_macd.return_value = (pd.Series([1, 2]), pd.Series([1.5, 2.5]))
     mock_bollinger_bands.return_value = (pd.Series([110, 120]), pd.Series([90, 100]))
@@ -55,10 +54,9 @@ def test_analyze_symbol_success(
     mock_bid_ask_spread.return_value = 2
     mock_order_book_imbalance.return_value = 0.6
 
-    # Call the function
-    result = analyze_symbol("BTCUSDT", mock_binance_utils, coingecko_data)
+    service = SymbolAnalysisService(mock_binance_client, coingecko_data)
+    result = service.analyze_symbol("BTCUSDT")
 
-    # Assertions
     assert result is not None
     assert result["symbol"] == "BTCUSDT"
     assert result["price"] == 106
@@ -81,22 +79,19 @@ def test_analyze_symbol_success(
 
 @patch("services.symbol_analysis_service.BINANCE_TO_COINGECKO_SYMBOLS", {"BTCUSDT": "bitcoin"})
 def test_analyze_symbol_missing_historical_data():
-    # Mock Binance utilities
-    mock_binance_utils = MagicMock()
-    mock_binance_utils.fetch_historical_data.return_value = None
+    mock_binance_client = MagicMock(spec=BinanceClient)
+    mock_binance_client.fetch_historical_data.return_value = None
 
-    # Call the function
-    result = analyze_symbol("BTCUSDT", mock_binance_utils, {})
+    service = SymbolAnalysisService(mock_binance_client, {})
+    result = service.analyze_symbol("BTCUSDT")
 
-    # Assertions
     assert result is None
 
 @patch("services.symbol_analysis_service.BINANCE_TO_COINGECKO_SYMBOLS", {"BTCUSDT": "bitcoin"})
 def test_analyze_symbol_exception():
-    # Mock Binance utilities to raise an exception
-    mock_binance_utils = MagicMock()
-    mock_binance_utils.fetch_historical_data.side_effect = Exception("Some error")
+    mock_binance_client = MagicMock(spec=BinanceClient)
+    mock_binance_client.fetch_historical_data.side_effect = Exception("Some error")
 
-    # Call the function and assert exception
+    service = SymbolAnalysisService(mock_binance_client, {})
     with pytest.raises(RuntimeError, match="Error analyzing symbol BTCUSDT: Some error"):
-        analyze_symbol("BTCUSDT", mock_binance_utils, {})
+        service.analyze_symbol("BTCUSDT")
