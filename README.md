@@ -59,10 +59,10 @@ This project is designed to monitor cryptocurrency data from various sources suc
 5. Set up environment variables by creating a `.env` file:
    ```env
    BINANCE_API_KEY=your_binance_api_key
-   COINGECKO_API_KEY=your_coingecko_api_key
    TELEGRAM_BOT_TOKEN=your_telegram_bot_token
    TELEGRAM_CHAT_ID=your_telegram_chat_id
    OPENAI_API_KEY=your_openai_api_key
+   NEWSAPI_API_KEY=your_newsapi_api_key
    ```
 
 ## Usage

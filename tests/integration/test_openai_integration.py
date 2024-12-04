@@ -1,25 +1,23 @@
 import unittest
-import openai
 from dotenv import load_dotenv
 import os
+from data_fetching.openai_client import OpenAIClient
 
 load_dotenv()
 
 class TestOpenAI(unittest.TestCase):
     def setUp(self):
         self.api_key = os.getenv("OPENAI_API_KEY")
-        openai.api_key = self.api_key
+        self.client = OpenAIClient(api_key=self.api_key)
 
-    def test_chat_completion(self):
+    def test_analyze_data(self):
         try:
-            response = openai.ChatCompletion.create(
-                model="gpt-4",
-                messages=[{"role": "user", "content": "Hello!"}],
-                max_tokens=5
-            )
-            self.assertIn("choices", response, "Response should include 'choices'")
+            input_text = "What is the current sentiment on Bitcoin?"
+            suggestion, analysis = self.client.analyze_data(input_text)
+            self.assertIsInstance(suggestion, str, "Suggestion should be a string")
+            self.assertIsInstance(analysis, str, "Analysis should be a string")
         except Exception as e:
-            self.fail(f"OpenAI ChatCompletion failed with error: {e}")
+            self.fail(f"OpenAI analyze_data failed with error: {e}")
 
 if __name__ == "__main__":
     unittest.main()
