@@ -1,8 +1,9 @@
-from config.logger import setup_logging
+
 from services.symbol_analysis_service import SymbolAnalysisService
 from data_fetching.openai_client import OpenAIClient
+import logging
 
-logger = setup_logging()
+logger = logging.getLogger()
 
 class GPTAnalysisService:
     def __init__(self, api_key):

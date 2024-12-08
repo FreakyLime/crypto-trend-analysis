@@ -2,7 +2,7 @@ import requests
 import pandas as pd
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
 
 class BinanceClient:
     BASE_URL = "https://api.binance.com/api/v3"

@@ -2,7 +2,7 @@ import logging
 from telegram import Bot
 from telegram.error import TelegramError
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
 
 async def send_analysis_to_telegram_with_image(bot_token, chat_id, message, image_path):
     bot = Bot(token=bot_token)

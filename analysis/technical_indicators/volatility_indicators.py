@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
-from config.logger import setup_logging
+import logging
 
-logger = setup_logging()
+logger = logging.getLogger()
 
 def calculate_bollinger_bands(data, window=20):
     try:

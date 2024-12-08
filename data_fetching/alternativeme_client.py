@@ -1,7 +1,7 @@
 import requests
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
 
 class AlternativeMeClient:
     BASE_URL = "https://api.alternative.me/fng/"

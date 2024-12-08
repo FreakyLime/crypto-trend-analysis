@@ -37,12 +37,6 @@ class ColorFormatter(logging.Formatter):
 
 
 def setup_logging():
-    """
-    Set up the main application logger based on environment settings.
-
-    Returns:
-        logger (logging.Logger): Configured logger instance.
-    """
     environment = os.getenv("ENVIRONMENT", "development").lower()
     log_dir = os.getenv("DEV_LOG_DIR") if environment == "development" else os.getenv("PROD_LOG_DIR")
     log_file_name = os.getenv("LOG_FILE_NAME", "application.log")
@@ -50,7 +44,7 @@ def setup_logging():
 
     os.makedirs(log_dir, exist_ok=True)
 
-    logger = logging.getLogger(__name__)
+    logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
     console_handler = logging.StreamHandler(sys.stdout)

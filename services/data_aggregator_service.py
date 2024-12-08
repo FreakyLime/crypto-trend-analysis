@@ -3,7 +3,7 @@ from data_fetching.coingecko_client import CoinGeckoClient
 from data_fetching.senticrypt_client import SentiCryptClient
 import logging
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger()
 
 class DataAggregatorService:
     def __init__(self):

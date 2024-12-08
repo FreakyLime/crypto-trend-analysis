@@ -5,9 +5,9 @@ import matplotlib.dates as mdates
 from mplfinance.original_flavor import candlestick_ohlc
 from datetime import datetime
 from scipy.stats import linregress
-from config.logger import setup_logging
+import logging
 
-logger = setup_logging()
+logger = logging.getLogger()
 
 class ChartGeneratorService:
     def __init__(self, output_dir="charts"):
