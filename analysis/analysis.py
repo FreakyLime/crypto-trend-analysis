@@ -7,15 +7,15 @@ from config.settings import (
     TELEGRAM_CHAT_ID, TELEGRAM_MESSAGE_DELAY, SYMBOLS_TO_MONITOR, BINANCE_TO_COINGECKO_SYMBOLS,
     CANDLESTICK_INTERVAL
 )
+from utils.db_utils import insert_into_history
+from utils.utils import count_tokens, prepare_currency_data, split_reasoning_by_symbol
 from services.data_aggregator_service import DataAggregatorService
 from services.gpt_analysis_service import GPTAnalysisService
 from services.chart_generator_service import ChartGeneratorService
 from notifications.telegram_notifications import send_analysis_to_telegram_with_image
 from data_fetching.binance_client import BinanceClient
-from utils.utils import count_tokens, prepare_currency_data, split_reasoning_by_symbol
-import logging
 
-logger = logging.getLogger()
+logger = setup_logging()
 
 async def analyze_top_cryptos(mode="full-analysis"):
     logger.info("Starting cryptocurrency analysis...")
@@ -65,19 +65,28 @@ async def analyze_top_cryptos(mode="full-analysis"):
                 if chart_file:
                     chart_files.append((symbol, chart_file))
 
-        if chart_files and mode not in ["charts-only", "skip-telegram"]:
+        if chart_files:
             reasoning_blocks = split_reasoning_by_symbol(reasoning, SYMBOLS_TO_MONITOR)
             for symbol, chart_file in chart_files:
                 message = reasoning_blocks.get(symbol, f"No specific analysis for {symbol}.")
                 current_datetime = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")
                 message = f"{symbol} - {message}\n\n{current_datetime} (UTC)"
-                await send_analysis_to_telegram_with_image(
-                    TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, message, chart_file
-                )
-                logger.info(f"Sent message for {symbol} to Telegram.")
-                await asyncio.sleep(TELEGRAM_MESSAGE_DELAY)
 
+                insert_into_history(symbol, message, chart_file)
+                
+                if mode not in ["charts-only", "skip-telegram"]:
+                    try:
+                        await send_analysis_to_telegram_with_image(
+                            TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID, message, chart_file
+                        )
+                        logger.info(f"Sent message for {symbol} to Telegram.")
+                    except Exception as e:
+                        logger.error(f"Failed to send message for {symbol}: {e}", exc_info=True)
+                    await asyncio.sleep(TELEGRAM_MESSAGE_DELAY)
         logger.info("Program finished with no errors.")
 
     except Exception as e:
         logger.error(f"An error occurred during analysis: {e}", exc_info=True)
+
+if __name__ == "__main__":
+    asyncio.run(analyze_top_cryptos())

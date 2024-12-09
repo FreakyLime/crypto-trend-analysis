@@ -28,10 +28,10 @@ class OpenAIClient:
             return suggestion, analysis
         except openai.error.OpenAIError as oe:
             logger.error(f"OpenAI API Error: {oe}")
-            return "Error analyzing data.", "No reasoning available."
+            raise
         except Exception as e:
             logger.error(f"Unexpected error: {e}")
-            return "Error analyzing data.", "No reasoning available."
+            raise
 
     def _extract_suggestion(self, analysis):
         analysis_lower = analysis.lower()

@@ -7,3 +7,7 @@ venv/
 *-env/
 *-venv/
 /log
+.coverage
+data.db
+database/*.db
+htmlcov/

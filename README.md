@@ -11,6 +11,7 @@ This project is designed to monitor cryptocurrency data from various sources suc
 - Calculate technical indicators for better market insights.
 - Leverage AI-powered analysis using OpenAI API.
 - Send automated reports and alerts to Telegram channels.
+- Save analysis data to SQLite database
 - Check out the Telegram showcase app to see how it works from the user's perspective:
    [@Alerts_123bot](https://t.me/Alerts_123bot)
 
@@ -66,6 +67,11 @@ This project is designed to monitor cryptocurrency data from various sources suc
    TELEGRAM_BOT_TOKEN=your_telegram_bot_token
    TELEGRAM_CHAT_ID=your_telegram_chat_id
    OPENAI_API_KEY=your_openai_api_key
+   ```
+
+6. Run the database migration script to set up the SQLite database:
+   ```migration
+   python database/migrate.py
    ```
 
 ## Usage
