@@ -12,10 +12,12 @@ This project is designed to monitor cryptocurrency data from various sources suc
 - Leverage AI-powered analysis using OpenAI API.
 - Send automated reports and alerts to Telegram channels.
 - Save analysis data to SQLite database
-- Check out the Telegram showcase app to see how it works from the user's perspective:
-   [@Alerts_123bot](https://t.me/Alerts_123bot)
 
-## Screenshot
+## Demo
+
+Check out the Telegram showcase app to see how it works from the user's perspective
+[@Alerts_123bot](https://t.me/Alerts_123bot)
+- Screenshot
 
 ![Screenshot](screenshot.png)
 
@@ -63,6 +65,7 @@ This project is designed to monitor cryptocurrency data from various sources suc
 
 5. Set up environment variables by creating a `.env` file:
    ```env
+   SQLITE3_DATABASE_FILE=database/crypto_analysis.db
    BINANCE_API_KEY=your_binance_api_key
    TELEGRAM_BOT_TOKEN=your_telegram_bot_token
    TELEGRAM_CHAT_ID=your_telegram_chat_id
