@@ -11,3 +11,4 @@ venv/
 data.db
 database/*.db
 htmlcov/
+deploy.sh
