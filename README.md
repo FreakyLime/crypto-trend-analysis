@@ -1,4 +1,3 @@
-
 # Crypto Trend Analysis Project
 
 ## Overview
@@ -15,11 +14,14 @@ This project is designed to monitor cryptocurrency data from various sources suc
 
 ## Demo
 
-Check out the Telegram showcase app to see how it works from the user's perspective
-[@Alerts_123bot](https://t.me/Alerts_123bot)
-- Screenshot
+Check out the Web and Telegram showcase app to see how it works from the user's perspective
+[Cryptotrends VIP](https://cryptotrends.vip) - [(WEB Repo)](https://github.com/FreakyLime/cryptotrends-site)
 
-![Screenshot](screenshot.png)
+![Screenshot](web.png)
+
+[@Alerts_123bot](https://t.me/Alerts_123bot)
+
+![Screenshot](telegram.png)
 
 ## Project Structure
 
@@ -43,36 +45,40 @@ Check out the Telegram showcase app to see how it works from the user's perspect
 ## Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/FreakyLime/crypto-trend-analysis
    ```
-
 2. Navigate to the project directory:
+
    ```bash
    cd crypto-trend-analysis
    ```
-
 3. Create a virtual environment and activate it:
+
    ```bash
    python -m venv env
    source env/bin/activate  # On Windows: env\Scripts\activate
    ```
-
 4. Install dependencies:
+
    ```bash
    pip install -r requirements.txt
    ```
-
 5. Set up environment variables by creating a `.env` file:
+
    ```env
    SQLITE3_DATABASE_FILE=database/crypto_analysis.db
    BINANCE_API_KEY=your_binance_api_key
    TELEGRAM_BOT_TOKEN=your_telegram_bot_token
    TELEGRAM_CHAT_ID=your_telegram_chat_id
    OPENAI_API_KEY=your_openai_api_key
+   SUPABASE_URL=https://YOUR_PROJECT.supabase.co
+   SUPABASE_KEY=
+   SUPABASE_SERVICE_KEY=
    ```
-
 6. Run the database migration script to set up the SQLite database:
+
    ```migration
    python database/migrate.py
    ```
@@ -80,10 +86,10 @@ Check out the Telegram showcase app to see how it works from the user's perspect
 ## Usage
 
 1. Run the monitoring service:
+
    ```bash
    python main.py
    ```
-
 2. View real-time data and updates in your Telegram channel.
 
 ## Future Enhancements

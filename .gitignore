@@ -12,3 +12,4 @@ data.db
 database/*.db
 htmlcov/
 deploy.sh
+run.sh
