@@ -79,24 +79,31 @@ jobs:
           retention-days: 1
 
       - name: Upload charts to Supabase (if configured)
-        if: ${{ secrets.SUPABASE_SERVICE_KEY != '' && secrets.SUPABASE_URL != '' }}
-        env:
-          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-          SQLITE3_DATABASE_FILE: ${{ secrets.SQLITE3_DATABASE_FILE }}
+        # Avoid referencing `secrets` in the step `if` expression (parser error).
+        # Perform a runtime check inside the shell step instead.
         run: |
           . env/bin/activate
+          if [ -z "$SUPABASE_SERVICE_KEY" ] || [ -z "$SUPABASE_URL" ]; then
+            echo "Supabase keys not configured; skipping upload to Supabase."
+            exit 0
+          fi
           # The service will read SUPABASE_SERVICE_KEY and SUPABASE_URL from env
           python -m services.upload_to_supabase_service
 
       - name: Delete temporary GitHub artifact (if Supabase upload succeeded)
-        if: ${{ success() && secrets.SUPABASE_SERVICE_KEY != '' && secrets.SUPABASE_URL != '' }}
+        if: ${{ success() }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           RUN_ID: ${{ github.run_id }}
           REPO: ${{ github.repository }}
         run: |
           set -e
+          # Only attempt deletion if Supabase is configured
+          if [ -z "$SUPABASE_SERVICE_KEY" ] || [ -z "$SUPABASE_URL" ]; then
+            echo "Supabase keys not configured; skipping artifact deletion."
+            exit 0
+          fi
+
           echo "Looking up artifact for run: $RUN_ID"
           ARTIFACT_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/artifacts" | jq -r '.artifacts[] | select(.name==("charts-archive-'$RUN_ID'")) | .id')
           if [ -z "$ARTIFACT_ID" ] || [ "$ARTIFACT_ID" == "null" ]; then
