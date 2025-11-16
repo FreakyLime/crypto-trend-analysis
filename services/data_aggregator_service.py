@@ -1,6 +1,5 @@
 from data_fetching.alternativeme_client import AlternativeMeClient
 from data_fetching.coingecko_client import CoinGeckoClient
-from data_fetching.senticrypt_client import SentiCryptClient
 import logging
 
 logger = logging.getLogger()
@@ -9,7 +8,6 @@ class DataAggregatorService:
     def __init__(self):
         self.alternative_me_client = AlternativeMeClient()
         self.coingecko_client = CoinGeckoClient()
-        self.senticrypt_client = SentiCryptClient()
 
     def fetch_global_metrics(self):
         try:
@@ -22,17 +20,9 @@ class DataAggregatorService:
             return {"fear_greed": None, "btc_dominance": None}
 
     def fetch_sentiment(self, symbol):
-        try:
-            if symbol == "BTCUSDT":
-                sentiment = self.senticrypt_client.fetch_sentiment()
-                logger.info(f"Successfully fetched sentiment for {symbol}.")
-                return sentiment
-            else:
-                logger.info(f"Sentiment data not available for {symbol}.")
-                return None
-        except Exception as e:
-            logger.error(f"Error fetching sentiment for {symbol}: {e}", exc_info=True)
-            return None
+        # Senticrypt API is down; return a neutral sentiment string.
+        logger.info(f"Sentiment data not available (Senticrypt API offline).")
+        return "Sentiment data unavailable."
 
     def fetch_coingecko_data(self, symbols, mapping):
         try:

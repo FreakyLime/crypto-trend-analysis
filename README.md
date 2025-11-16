@@ -2,7 +2,7 @@
 
 ## Overview
 
-This project is designed to monitor cryptocurrency data from various sources such as Binance, CoinGecko, and Senticrypt. It calculates technical indicators and uses the OpenAI API to generate detailed analyses. These analyses are then sent to a Telegram channel for real-time updates.
+This project is designed to monitor cryptocurrency data from various sources such as Binance and CoinGecko. It calculates technical indicators and uses the OpenAI API to generate detailed analyses. These analyses are then sent to a Telegram channel for real-time updates.
 
 ## Features
 
@@ -25,7 +25,7 @@ Check out the Web and Telegram showcase app to see how it works from the user's 
 
 ## Project Structure
 
-- **Data Fetching**: Collects data from APIs like Binance, CoinGecko, and Senticrypt.
+- **Data Fetching**: Collects data from APIs like Binance and CoinGecko.
 - **Technical Analysis**: Computes indicators such as RSI, MACD, and Bollinger Bands.
 - **AI Integration**: Utilizes OpenAI for advanced market sentiment analysis.
 - **Telegram Integration**: Sends updates, alerts, and detailed analysis to a specified Telegram channel.
@@ -38,7 +38,6 @@ Check out the Web and Telegram showcase app to see how it works from the user's 
 - **API Keys**: Required for:
   - Binance API
   - CoinGecko API
-  - Senticrypt API
   - OpenAI API
   - Telegram Bot API
 

@@ -22,20 +22,13 @@ def test_fetch_global_metrics_failure(mock_logger, mock_fetch_fear_and_greed, mo
     assert result == {"fear_greed": None, "btc_dominance": None}
     mock_logger.assert_called()
 
-@patch("services.data_aggregator_service.SentiCryptClient.fetch_sentiment")
-def test_fetch_sentiment_success(mock_fetch_sentiment):
-    mock_fetch_sentiment.return_value = {"sentiment": "positive"}
+@patch("services.data_aggregator_service.logger.info")
+def test_fetch_sentiment_offline(mock_logger):
+    # Senticrypt API is offline; fetch_sentiment should return a neutral message
     service = DataAggregatorService()
     result = service.fetch_sentiment("BTCUSDT")
-    assert result == {"sentiment": "positive"}
-    mock_fetch_sentiment.assert_called_once()
-
-@patch("services.data_aggregator_service.logger.info")
-def test_fetch_sentiment_symbol_not_supported(mock_logger):
-    service = DataAggregatorService()
-    result = service.fetch_sentiment("ETHUSDT")
-    assert result is None
-    mock_logger.assert_called_with("Sentiment data not available for ETHUSDT.")
+    assert result == "Sentiment data unavailable."
+    mock_logger.assert_called()
 
 @patch("services.data_aggregator_service.CoinGeckoClient.fetch_all_coin_data")
 def test_fetch_coingecko_data_success(mock_fetch_all_coin_data):
