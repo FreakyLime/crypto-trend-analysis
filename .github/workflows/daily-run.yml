@@ -1,0 +1,114 @@
+name: Daily Run
+
+on:
+  schedule:
+    # Runs daily at 06:00 UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch: {}
+
+jobs:
+  run-analysis:
+    runs-on: ubuntu-latest
+    env:
+      # Map repository secrets to environment variables used by the app
+      BINANCE_API_KEY: ${{ secrets.BINANCE_API_KEY }}
+      BINANCE_API_SECRET: ${{ secrets.BINANCE_API_SECRET }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+      SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+      SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+      SQLITE3_DATABASE_FILE: ${{ secrets.SQLITE3_DATABASE_FILE }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+
+      - name: Ensure venv and install dependencies
+        run: |
+          python -m venv env
+          . env/bin/activate
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Validate required environment variables
+        run: |
+          set -e
+          required=(OPENAI_API_KEY BINANCE_API_KEY BINANCE_API_SECRET TELEGRAM_BOT_TOKEN TELEGRAM_CHAT_ID)
+          missing=()
+          for v in "${required[@]}"; do
+            if [ -z "${!v}" ]; then
+              missing+=("$v")
+            fi
+          done
+          if [ ${#missing[@]} -ne 0 ]; then
+            echo "Missing required secrets: ${missing[*]}"
+            exit 1
+          fi
+
+      - name: Run analysis
+        env:
+          # pass through env vars explicitly to the run step
+          BINANCE_API_KEY: ${{ secrets.BINANCE_API_KEY }}
+          BINANCE_API_SECRET: ${{ secrets.BINANCE_API_SECRET }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SQLITE3_DATABASE_FILE: ${{ secrets.SQLITE3_DATABASE_FILE }}
+        run: |
+          . env/bin/activate
+          # Use the same entrypoint as local dev; default mode is `full-analysis`.
+          python main.py
+
+      - name: Upload charts as temporary artifact
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: charts-archive-${{ github.run_id }}
+          path: |
+            charts/**
+          retention-days: 1
+
+      - name: Upload charts to Supabase (if configured)
+        if: ${{ secrets.SUPABASE_SERVICE_KEY != '' && secrets.SUPABASE_URL != '' }}
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          SQLITE3_DATABASE_FILE: ${{ secrets.SQLITE3_DATABASE_FILE }}
+        run: |
+          . env/bin/activate
+          # The service will read SUPABASE_SERVICE_KEY and SUPABASE_URL from env
+          python -m services.upload_to_supabase_service
+
+      - name: Delete temporary GitHub artifact (if Supabase upload succeeded)
+        if: ${{ success() && secrets.SUPABASE_SERVICE_KEY != '' && secrets.SUPABASE_URL != '' }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ github.run_id }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -e
+          echo "Looking up artifact for run: $RUN_ID"
+          ARTIFACT_ID=$(curl -s -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/actions/runs/$RUN_ID/artifacts" | jq -r '.artifacts[] | select(.name==("charts-archive-'$RUN_ID'")) | .id')
+          if [ -z "$ARTIFACT_ID" ] || [ "$ARTIFACT_ID" == "null" ]; then
+            echo "No matching artifact found to delete."
+            exit 0
+          fi
+
+          echo "Deleting artifact id: $ARTIFACT_ID"
+          curl -s -X DELETE -H "Authorization: token $GITHUB_TOKEN" "https://api.github.com/repos/$REPO/actions/artifacts/$ARTIFACT_ID"
+          echo "Artifact deleted."
+
+      - name: Clean up charts folder
+        if: always()
+        run: |
+          rm -rf charts/* || true
