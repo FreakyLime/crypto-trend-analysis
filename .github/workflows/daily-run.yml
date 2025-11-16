@@ -70,6 +70,10 @@ jobs:
           SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
           SQLITE3_DATABASE_FILE: ${{ secrets.SQLITE3_DATABASE_FILE }}
+          # Use a proxy to bypass regional Binance API restrictions in GitHub Actions
+          # requests library automatically uses HTTP_PROXY/HTTPS_PROXY env vars
+          HTTP_PROXY: http://195.154.57.174:8080
+          HTTPS_PROXY: http://195.154.57.174:8080
         run: |
           . env/bin/activate
           # Use the same entrypoint as local dev; default mode is `full-analysis`.
