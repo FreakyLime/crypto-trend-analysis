@@ -37,6 +37,12 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Run DB migrations
+        run: |
+          . env/bin/activate
+          # Create sqlite DB and tables if missing
+          python database/migrate.py || true
+
       - name: Validate required environment variables
         run: |
           set -e
