@@ -1,4 +1,10 @@
 import sqlite3
+import os
+import sys
+
+# Add repo root to sys.path so imports work regardless of cwd
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from config.settings import SQLITE3_DATABASE_FILE
 
 def apply_migrations():

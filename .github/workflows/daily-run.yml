@@ -41,7 +41,7 @@ jobs:
         run: |
           . env/bin/activate
           # Create sqlite DB and tables if missing
-          python database/migrate.py || true
+          python database/migrate.py
 
       - name: Validate required environment variables
         run: |
