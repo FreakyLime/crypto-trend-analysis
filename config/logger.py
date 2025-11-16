@@ -38,7 +38,11 @@ class ColorFormatter(logging.Formatter):
 
 def setup_logging():
     environment = os.getenv("ENVIRONMENT", "development").lower()
-    log_dir = os.getenv("DEV_LOG_DIR") if environment == "development" else os.getenv("PROD_LOG_DIR")
+    if environment == "development":
+        log_dir = os.getenv("DEV_LOG_DIR") or "./log"
+    else:
+        log_dir = os.getenv("PROD_LOG_DIR") or "./prod_log"
+
     log_file_name = os.getenv("LOG_FILE_NAME", "application.log")
     log_file_path = os.path.join(log_dir, log_file_name)
 
